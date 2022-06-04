@@ -1,0 +1,34 @@
+<div class="container">
+<div class="alert alert-danger" *ngIf="errorMasg != null">
+    {{errorMasg}}
+</div>
+<form [formGroup]="loginForm" (ngSubmit)="handlelogin()">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" placeholder="enter your email" formControlName="email">
+        <div class="alert alert-danger" *ngIf="isSubmitted &&userInfo?.['email']?.invalid">
+
+            <div *ngIf="userInfo?.['email']?.errors?.['required']">
+                email is required
+            </div>
+            <div *ngIf="userInfo?.['email']?.errors?.['email']">
+                email is invalid
+            </div>
+
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" placeholder="enter your password" formControlName="password">
+        <div class="alert alert-danger" *ngIf="isSubmitted &&userInfo?.['password']?.invalid">
+            password is required
+        </div>
+    </div>
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary" >login</button>
+        <button class="btn btn-success" routerLink="register">register</button>
+    </div>
+
+
+</form>
+</div>

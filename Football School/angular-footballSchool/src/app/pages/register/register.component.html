@@ -1,0 +1,72 @@
+<div class="container">
+<form #register="ngForm" (ngSubmit)="handleSubmit(register)">
+  <!-- {{register.value | json}} -->
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Name</label>
+    <input type="email" class="form-control" placeholder="enter your name" [(ngModel)]="model.name" name="name"
+      #name="ngModel" required>
+    <div class="alert alert-danger" *ngIf="register.submitted && name.invalid ">
+
+      <div *ngIf="name.errors?.['required']">
+        Name is required
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Phone</label>
+    <input type="number" class="form-control" placeholder="enter your phone" [(ngModel)]="model.phone" name="phone"
+      #phone="ngModel" required>
+    <div class="alert alert-danger" *ngIf="register.submitted && phone.invalid ">
+      <div *ngIf="phone.errors?.['required']">
+        phone is required
+      </div>
+    </div>
+    
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" placeholder="enter your email" [(ngModel)]="model.email" name="email"
+      #email="ngModel" required email>
+    <div class="alert alert-danger" *ngIf="email.invalid &&(register.submitted || email.dirty)">
+      <div *ngIf="email.errors?.['required']">
+        email is required
+      </div>
+      <div *ngIf="email.errors?.['email']">
+        email is invalid
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input type="password" class="form-control" placeholder="enter your new password" [(ngModel)]="model.password"
+      name="password" #password="ngModel" required>
+    <div class="alert alert-danger" *ngIf="register.submitted && password.invalid ">
+      <div *ngIf="password.errors?.['required']">
+        password is required
+      </div>
+    </div>
+    
+  </div>
+  <div class="row g-3 mb-3">
+    <div class="col">
+      <label class="form-label">Age</label>
+      <input type="number" class="form-control" placeholder="Age from 5 to 30" [(ngModel)]="model.age" name="age"
+        #age="ngModel" required>
+      <div class="alert alert-danger" *ngIf="register.submitted && age.invalid ">
+        <div *ngIf="age.errors?.['required']">
+          age is required
+        </div>
+      </div>
+      
+    </div>
+    <div class="col mt-5">
+      <select id="inputState" class="form-select" [(ngModel)]="model.gender" name="gender" #gender="ngModel" required>
+        <option selected disabled>Choose gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Form Submit</button>
+</form>
+</div>
